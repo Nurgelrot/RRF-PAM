@@ -40,8 +40,11 @@ if (var.probeGridMinY + var.deviationFromOriginal) >= var.pamMinY	; Check if the
 if (var.probeGridMaxY - var.deviationFromOriginal) <= var.pamMaxY	; Check if the difference between the max X and the print job max X is smaller than the set devation
 	set var.pamMaxY = {var.probeGridMaxY}									; The difference is smaller than the set devation so set maxY to the max of the printer's Y
 	
-var meshX = floor(min(var.maxMeshPoints - 1, (max(var.minMeshPoints - 1, (var.pamMaxX - var.pamMinX) / var.meshSpacing) + 1)))	; Get the number of probes for X taking minMeshPoints and maxMeshPoints into account
-var meshY = floor(min(var.maxMeshPoints - 1, (max(var.minMeshPoints - 1, (var.pamMaxY - var.pamMinY) / var.meshSpacing) + 1)))	; Get the number of probes for Y taking minMeshPoints and maxMeshPoints into account
+var tempX = max(var.minMeshPoints - 1, (var.pamMaxX - var.pamMinX) / var.meshSpacing); Work around for stack size in the Mini5/F405-7
+var tempY = max(var.minMeshPoints - 1, (var.pamMaxY - var.pamMinY) / var.meshSpacing); Work around for stack size in the Mini5/F405-7
+
+var meshX = floor(min(var.maxMeshPoints - 1, (var.tempX + 1)))    ; Get the number of probes for X taking minMeshPoints and maxMeshPoints into account
+var meshY = floor(min(var.maxMeshPoints - 1, (var.tempY + 1)))    ; Get the number of probes for Y taking minMeshPoints and maxMeshPoints into account
 
 var consoleMessage = "Set probe grid to use X-min: " ^ var.pamMinX ^ "; X-max: " ^ var.pamMaxX ^ "; Y-min: " ^ var.pamMinY ^ "; Y-max: " ^ var.pamMaxY "; Probing points: " ^ var.meshX ^ ";" ^ var.meshY	; Set the console message
 M118 P2 S{var.consoleMessage} ; send used probe grid to paneldue

@@ -32,17 +32,17 @@ Replace your G29 command with the specified command for your slicer
 
 - PrusaSlicer / SuperSlicer
 ```ini
-M98 P"sys/print_area_mesh.g" A{first_layer_print_min[0]} B{first_layer_print_max[0]} C{first_layer_print_min[1]} D{first_layer_print_max[1]}
+M98 P"/sys/print_area_mesh.g" A{first_layer_print_min[0]} B{first_layer_print_max[0]} C{first_layer_print_min[1]} D{first_layer_print_max[1]}
 ```
 
 - Ideamaker 
 ```ini
-M98 P"sys/print_area_mesh.g" A{print_pos_min_x} B{print_pos_max_x} C{print_pos_min_y} D{print_pos_max_y}
+M98 P"/sys/print_area_mesh.g" A{print_pos_min_x} B{print_pos_max_x} C{print_pos_min_y} D{print_pos_max_y}
 ```
 
 - Cura
 ```ini
-M98 P"sys/print_area_mesh.g" A%MINX% B%MAXX% C%MINY% D%MAXY%
+M98 P"/sys/print_area_mesh.g" A%MINX% B%MAXX% C%MINY% D%MAXY%
 ```
 
 To make PAM work with Cura you need to install a post processing plugin
